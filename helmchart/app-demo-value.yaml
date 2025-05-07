@@ -5,12 +5,12 @@
 replicaCount: 2
 
 image:
-  repository: harbor.prod.viettq.com/demo/my-app
+  repository: harbor.host/nodejs-demo/my-app
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1"
 
-imagePullSecrets: []
+imagePullSecrets: [registry]
 nameOverride: ""
 fullnameOverride: ""
 
@@ -37,11 +37,11 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+  port: 5000
 
 ingress:
-  enabled: true
+  enabled: false
   className: "local"
   annotations: {}
     # kubernetes.io/ingress.class: nginx
